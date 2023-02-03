@@ -11,7 +11,7 @@ func _physics_process(delta):
 	rotation_speed = clampf(rotation_speed, -max_speed, max_speed)
 	entity.rotation.y += rotation_speed * delta
 
-func _to_rotation(property: Node3D) -> float:
+func _to_rotation(property: Node) -> float:
 	if property.has_method('_rotate'):
 		return property._rotate()
 	else:

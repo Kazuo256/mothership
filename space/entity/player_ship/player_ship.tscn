@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=10 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/player_ship/player_ship.gd" id="1_jg07t"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_p3x1y"]
@@ -8,13 +8,19 @@
 [ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="5_u8lq3"]
 [ext_resource type="Script" path="res://space/entity/property/debug.gd" id="7_narnh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
+albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_h3171"]
+material = SubResource("StandardMaterial3D_65qxl")
+
 [node name="PlayerShip" type="CharacterBody3D"]
 motion_mode = 1
 script = ExtResource("1_jg07t")
 
 [node name="Movement" type="Node3D" parent="."]
 script = ExtResource("1_p3x1y")
-max_speed = 100.0
 
 [node name="Rotation" type="Node3D" parent="."]
 script = ExtResource("3_hg64s")
@@ -34,10 +40,11 @@ controller_path = NodePath("../ShipController")
 steer_max = 2.0
 steer_delay = 0.1
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)
 text = "debug info"
 font_size = 64
 script = ExtResource("7_narnh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h3171")

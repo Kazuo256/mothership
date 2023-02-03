@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://koo2rhuv5x7p"]
+
+[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_aawm1"]
+[ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_jg84b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umaqo"]
+albedo_color = Color(0.121569, 0.819608, 1, 1)
+emission_enabled = true
+emission = Color(0.121569, 0.819608, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j2uo3"]
+material = SubResource("StandardMaterial3D_umaqo")
+radius = 0.02
+height = 0.2
+radial_segments = 8
+
+[node name="Laser" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_j2uo3")
+
+[node name="Movement" type="Node3D" parent="."]
+script = ExtResource("1_aawm1")
+
+[node name="FixedVelocity" type="Node3D" parent="."]
+script = ExtResource("2_jg84b")
+speed = 25.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free" flags=6]
