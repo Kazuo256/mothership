@@ -10,7 +10,7 @@ class_name Thruster extends Node3D
 func _physics_process(delta: float):
 	var target := controller.frontal_control * thrust_max
 	var step := absf(target) * delta / thrust_delay
-	thrust = move_toward(thrust, target, step)
+	thrust = max(0.0, move_toward(thrust, target, step))
 
 func _move() -> Vector3:
 	return -transform.basis.z * thrust
