@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dslda4ea551ye"]
+
+[ext_resource type="PackedScene" uid="uid://jtljxle4w8t5" path="res://space/camera/camera_focus.tscn" id="1_8nnqv"]
+
+[node name="Space" type="Node3D"]
+
+[node name="CameraFocus" parent="." instance=ExtResource("1_8nnqv")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
