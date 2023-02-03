@@ -4,11 +4,12 @@ class_name Movement extends Node3D
 
 func _physics_process(_delta):
 	var entity := OwnerEntity.from(self)
-	entity.velocity = entity \
+	var velocity = entity \
 			.get_children() \
 			.map(_to_movement) \
 			.reduce(func (acc, move): return acc + move) \
 			.limit_length(max_speed)
+	entity.velocity = entity.transform.basis * velocity
 	entity.move_and_slide()
 
 func _to_movement(property: Node3D) -> Vector3:

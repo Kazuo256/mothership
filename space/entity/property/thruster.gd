@@ -1,9 +1,10 @@
 class_name Thruster extends Node3D
 
-@export var controller: ShipController
+@export var controller_path: NodePath
 @export var thrust_max := 1.0
 @export var thrust_delay := 1.0
 
+@onready var controller := get_node_or_null(controller_path) as ShipController
 @onready var thrust := 0.0
 
 func _physics_process(delta: float):
