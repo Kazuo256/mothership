@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqn5aseil26xe"]
+
+[ext_resource type="Script" path="res://space/entity/player_ship/player_ship.gd" id="1_jg07t"]
+[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_p3x1y"]
+[ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="3_42voj"]
+[ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="5_u8lq3"]
+
+[node name="PlayerShip" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_jg07t")
+
+[node name="Movement" type="Node3D" parent="."]
+script = ExtResource("1_p3x1y")
+max_speed = 100.0
+
+[node name="ShipController" type="Node3D" parent="."]
+script = ExtResource("3_42voj")
+
+[node name="Thruster" type="Node3D" parent="." node_paths=PackedStringArray("controller")]
+script = ExtResource("5_u8lq3")
+controller = NodePath("../ShipController")
+thrust_max = 10.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
