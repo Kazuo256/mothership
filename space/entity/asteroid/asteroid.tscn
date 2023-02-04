@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://dccq5kagdako6"]
+
+[ext_resource type="Script" path="res://space/entity/asteroid/asteroid.gd" id="1_3krq4"]
+[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_idbsr"]
+[ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_n31qs"]
+[ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="4_fp0gi"]
+[ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="5_43ftj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_36q10"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3d37h"]
+albedo_color = Color(0.372549, 0.341176, 0.184314, 1)
+metallic = 0.5
+metallic_specular = 0.0
+roughness = 0.8
+normal_scale = 0.5
+heightmap_texture = SubResource("NoiseTexture2D_36q10")
+
+[sub_resource type="SphereMesh" id="SphereMesh_vtrk1"]
+material = SubResource("StandardMaterial3D_3d37h")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q1v87"]
+
+[node name="Asteroid" type="CharacterBody3D"]
+script = ExtResource("1_3krq4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_vtrk1")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_q1v87")
+
+[node name="Movement" type="Node3D" parent="."]
+script = ExtResource("1_idbsr")
+
+[node name="FixedVelocity" type="Node3D" parent="."]
+script = ExtResource("2_n31qs")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+script = ExtResource("4_fp0gi")
+
+[node name="Shape" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_q1v87")
+
+[node name="Destruction" type="Node3D" parent="."]
+script = ExtResource("5_43ftj")
+hit_points = 5
+
+[connection signal="destroyed" from="Destruction" to="." method="queue_free"]

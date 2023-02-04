@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="5_u8lq3"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="7_24fct"]
 [ext_resource type="Script" path="res://space/entity/property/debug.gd" id="7_narnh"]
-[ext_resource type="PackedScene" uid="uid://koo2rhuv5x7p" path="res://space/entity/projectile/laser/laser.tscn" id="8_a3oto"]
+[ext_resource type="PackedScene" uid="uid://bd4gm24n2vi0v" path="res://space/entity/projectile/laser/laser.tscn" id="8_a3oto"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
