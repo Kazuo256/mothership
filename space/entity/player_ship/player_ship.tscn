@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=13 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/player_ship/player_ship.gd" id="1_jg07t"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_p3x1y"]
+[ext_resource type="Script" path="res://space/entity/property/player_input.gd" id="2_56xsg"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="3_42voj"]
 [ext_resource type="Script" path="res://space/entity/property/rotation.gd" id="3_hg64s"]
 [ext_resource type="Script" path="res://space/entity/property/steering.gd" id="5_0e0hq"]
@@ -21,6 +22,9 @@ size = Vector3(0.6, 0.4, 1)
 [node name="PlayerShip" type="CharacterBody3D"]
 motion_mode = 1
 script = ExtResource("1_jg07t")
+
+[node name="PlayerInput" type="Node3D" parent="."]
+script = ExtResource("2_56xsg")
 
 [node name="Movement" type="Node3D" parent="."]
 script = ExtResource("1_p3x1y")
@@ -43,14 +47,16 @@ controller_path = NodePath("../ShipController")
 steer_max = 2.0
 steer_delay = 0.1
 
-[node name="GunLeft" type="Node3D" parent="."]
+[node name="GunAxis" type="Node3D" parent="."]
+
+[node name="GunLeft" type="Node3D" parent="GunAxis"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
 script = ExtResource("7_24fct")
 projectile_scn = ExtResource("8_a3oto")
 cooldown_duration = 0.15
 warmup_duration = 0.0
 
-[node name="GunRight" type="Node3D" parent="."]
+[node name="GunRight" type="Node3D" parent="GunAxis"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
 script = ExtResource("7_24fct")
 projectile_scn = ExtResource("8_a3oto")
