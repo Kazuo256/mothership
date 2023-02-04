@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://b75w5l33qdiwg"]
+
+[ext_resource type="Script" path="res://space/entity/ship/mothership/mothership.gd" id="1_aoe5k"]
+[ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="1_gteac"]
+[ext_resource type="Script" path="res://space/entity/property/gun.gd" id="2_7mr5l"]
+[ext_resource type="PackedScene" uid="uid://fhymupg8nv7x" path="res://space/entity/ship/fighter/fighter.tscn" id="3_kuhhp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxh4a"]
+albedo_color = Color(0.2, 0.0470588, 0.403922, 1)
+metallic = 0.54
+metallic_specular = 0.79
+roughness = 0.37
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jpl7r"]
+material = SubResource("StandardMaterial3D_kxh4a")
+radius = 10.0
+height = 40.0
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yaxsi"]
+radius = 10.0
+height = 40.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tanj5"]
+top_radius = 0.0
+height = 1.0
+
+[node name="Mothership" type="CharacterBody3D"]
+collision_layer = 6
+collision_mask = 4
+script = ExtResource("1_aoe5k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_jpl7r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_yaxsi")
+
+[node name="ShipController" type="Node3D" parent="."]
+script = ExtResource("1_gteac")
+
+[node name="Gun" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4994, 0, 0.550941)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun"]
+transform = Transform3D(2.98023e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.98023e-08, -8.88178e-16, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")

@@ -33,17 +33,11 @@ func _is_player_far() -> bool:
 
 func _follow_player():
 	var diff := player_ship.position - position
-	var angle := (-transform.basis.z).angle_to(diff)
-	var side := sign(transform.basis.x.dot(diff))
-	ship_controller.frontal_control = 1.0
-	ship_controller.steer_control = -side * clamp(angle, -1, 1)
+	ship_controller.move_towards(diff, 1.0)
 
 func _turn_away():
 	var diff := position - player_ship.position
-	var angle := (-transform.basis.z).angle_to(diff)
-	var side := sign(transform.basis.x.dot(diff))
-	ship_controller.frontal_control = 1.0
-	ship_controller.steer_control = -side * clamp(angle, -1, 1)
+	ship_controller.move_towards(diff, 1.0)
 	retry_timer = get_tree().create_timer(turn_away_duration)
 	retry_timer.timeout.connect(func(): retry_timer = null)
 
