@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://koo2rhuv5x7p"]
 
-[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_aawm1"]
-[ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_jg84b"]
+[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_4pm80"]
+[ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_uvhxj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umaqo"]
 albedo_color = Color(0.121569, 0.819608, 1, 1)
@@ -22,10 +22,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 mesh = SubResource("CapsuleMesh_j2uo3")
 
 [node name="Movement" type="Node3D" parent="."]
-script = ExtResource("1_aawm1")
+script = ExtResource("1_4pm80")
 
 [node name="FixedVelocity" type="Node3D" parent="."]
-script = ExtResource("2_jg84b")
+script = ExtResource("2_uvhxj")
 speed = 25.0
 
 [node name="Timer" type="Timer" parent="."]

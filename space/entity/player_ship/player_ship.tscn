@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=12 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/player_ship/player_ship.gd" id="1_jg07t"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_p3x1y"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://space/entity/property/rotation.gd" id="3_hg64s"]
 [ext_resource type="Script" path="res://space/entity/property/steering.gd" id="5_0e0hq"]
 [ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="5_u8lq3"]
+[ext_resource type="Script" path="res://space/entity/property/gun.gd" id="7_24fct"]
 [ext_resource type="Script" path="res://space/entity/property/debug.gd" id="7_narnh"]
+[ext_resource type="PackedScene" uid="uid://koo2rhuv5x7p" path="res://space/entity/projectile/laser/laser.tscn" id="8_a3oto"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
@@ -14,6 +16,7 @@ metallic = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h3171"]
 material = SubResource("StandardMaterial3D_65qxl")
+size = Vector3(0.6, 0.4, 1)
 
 [node name="PlayerShip" type="CharacterBody3D"]
 motion_mode = 1
@@ -39,6 +42,20 @@ script = ExtResource("5_0e0hq")
 controller_path = NodePath("../ShipController")
 steer_max = 2.0
 steer_delay = 0.1
+
+[node name="GunLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+script = ExtResource("7_24fct")
+projectile_scn = ExtResource("8_a3oto")
+cooldown_duration = 0.15
+warmup_duration = 0.0
+
+[node name="GunRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+script = ExtResource("7_24fct")
+projectile_scn = ExtResource("8_a3oto")
+cooldown_duration = 0.15
+warmup_duration = 0.075
 
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)
