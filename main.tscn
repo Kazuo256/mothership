@@ -1,7 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://c25j5gch8vw4j"]
+[gd_scene load_steps=8 format=3 uid="uid://c25j5gch8vw4j"]
 
 [ext_resource type="PackedScene" uid="uid://cmrd2phqetxr6" path="res://space/space.tscn" id="1_6nhv3"]
+
+[sub_resource type="Gradient" id="Gradient_knaus"]
+offsets = PackedFloat32Array(0.912698, 0.964286)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.906647, 0.563268, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7pvdu"]
+noise_type = 0
+frequency = 0.7
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_craph"]
+width = 2048
+height = 2048
+color_ramp = SubResource("Gradient_knaus")
+noise = SubResource("FastNoiseLite_7pvdu")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hog8k"]
+panorama = SubResource("NoiseTexture2D_craph")
+
+[sub_resource type="Sky" id="Sky_o1sds"]
+sky_material = SubResource("PanoramaSkyMaterial_hog8k")
+
+[sub_resource type="Environment" id="Environment_byw2o"]
+background_mode = 2
+sky = SubResource("Sky_o1sds")
+glow_enabled = true
+glow_bloom = 0.5
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+volumetric_fog_density = 0.01
 
 [node name="Main" type="Node3D"]
 
 [node name="Space" parent="." instance=ExtResource("1_6nhv3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_byw2o")

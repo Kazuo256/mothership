@@ -39,6 +39,8 @@ script = ExtResource("1_idbsr")
 script = ExtResource("2_n31qs")
 
 [node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("4_fp0gi")
 
 [node name="Shape" type="CollisionShape3D" parent="Hurtbox"]

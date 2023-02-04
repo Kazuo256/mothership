@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://se08ki6bvas5"]
+
+[ext_resource type="PackedScene" uid="uid://bd4gm24n2vi0v" path="res://space/entity/projectile/laser/laser.tscn" id="1_orro0"]
+
+[node name="FighterLaser" instance=ExtResource("1_orro0")]
+
+[node name="Hitbox" parent="." index="4"]
+collision_mask = 13

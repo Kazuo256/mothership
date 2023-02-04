@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=18 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/ship/player_ship/player_ship.gd" id="1_bo38g"]
 [ext_resource type="Script" path="res://space/entity/property/player_input.gd" id="2_jod1e"]
@@ -9,13 +9,9 @@
 [ext_resource type="Script" path="res://space/entity/property/steering.gd" id="7_dqxio"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="8_g2sxu"]
 [ext_resource type="Script" path="res://space/entity/property/aim_direction.gd" id="8_xy3u0"]
-[ext_resource type="PackedScene" uid="uid://bd4gm24n2vi0v" path="res://space/entity/projectile/laser/laser.tscn" id="9_q7iqt"]
 [ext_resource type="Script" path="res://space/entity/property/debug.gd" id="10_up1gw"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_jg8eg"]
-top_radius = 0.0
-bottom_radius = 0.01
-height = 0.1
+[ext_resource type="PackedScene" uid="uid://b8elbckro8ml6" path="res://space/entity/ship/player_ship/player_laser.tscn" id="10_ytg20"]
+[ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="11_2imd3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
@@ -25,9 +21,26 @@ metallic = 1.0
 material = SubResource("StandardMaterial3D_65qxl")
 size = Vector3(0.6, 0.4, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtox3"]
+size = Vector3(0.6, 0.4, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jg8eg"]
+top_radius = 0.0
+bottom_radius = 0.01
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m28nx"]
+size = Vector3(0.6, 0.4, 1)
+
 [node name="PlayerShip" type="CharacterBody3D"]
 motion_mode = 1
 script = ExtResource("1_bo38g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h3171")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vtox3")
 
 [node name="PlayerInput" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
 script = ExtResource("2_jod1e")
@@ -64,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, -0.36592)
 script = ExtResource("8_g2sxu")
 ship_controller = NodePath("../../ShipController")
 ship_gun = 0
-projectile_scn = ExtResource("9_q7iqt")
+projectile_scn = ExtResource("10_ytg20")
 cooldown_duration = 0.15
 warmup_duration = 0.0
 
@@ -77,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -0.36592)
 script = ExtResource("8_g2sxu")
 ship_controller = NodePath("../../ShipController")
 ship_gun = 0
-projectile_scn = ExtResource("9_q7iqt")
+projectile_scn = ExtResource("10_ytg20")
 cooldown_duration = 0.15
 warmup_duration = 0.075
 
@@ -86,11 +99,14 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 mesh = SubResource("CylinderMesh_jg8eg")
 skeleton = NodePath("../../GunLeft")
 
+[node name="Hurtbox" type="Area3D" parent="."]
+script = ExtResource("11_2imd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("BoxShape3D_m28nx")
+
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)
 text = "debug info"
 font_size = 64
 script = ExtResource("10_up1gw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_h3171")
