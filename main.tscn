@@ -40,3 +40,19 @@ space_scn = ExtResource("1_6nhv3")
 environment = SubResource("Environment_byw2o")
 
 [node name="CameraFocus" parent="." instance=ExtResource("3_y3f2d")]
+
+[node name="Gameover" type="Node3D" parent="CameraFocus"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -0.574391, 0.818581, 0, -0.818581, -0.574391, 0, 4.63882, 1.55355)
+visible = false
+
+[node name="Label3D" type="Label3D" parent="CameraFocus/Gameover"]
+text = "GAME OVER"
+font_size = 160
+
+[node name="Retry" type="Label3D" parent="CameraFocus/Gameover"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+text = "SHOOT TO RETRY"
+font_size = 64

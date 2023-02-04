@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=19 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/ship/player_ship/player_ship.gd" id="1_bo38g"]
 [ext_resource type="Script" path="res://space/entity/property/player_input.gd" id="2_jod1e"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://space/entity/property/debug.gd" id="10_up1gw"]
 [ext_resource type="PackedScene" uid="uid://b8elbckro8ml6" path="res://space/entity/ship/player_ship/player_laser.tscn" id="10_ytg20"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="11_2imd3"]
+[ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="12_fsoxa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
@@ -107,8 +108,13 @@ script = ExtResource("11_2imd3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("BoxShape3D_m28nx")
 
+[node name="Destruction" type="Node3D" parent="."]
+script = ExtResource("12_fsoxa")
+
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)
 text = "debug info"
 font_size = 64
 script = ExtResource("10_up1gw")
+
+[connection signal="destroyed" from="Destruction" to="." method="queue_free" flags=6]
