@@ -10,15 +10,21 @@ func _ready():
 	_load_space()
 
 func _physics_process(_delta):
-	if space != null and space.player == null and not %Gameover.visible:
-		%Gameover.show()
-		await get_tree().create_timer(retry_delay).timeout
-		%Retry.show()
+	if space != null:
+		if space.player == null and not %Gameover.visible:
+			%Gameover.show()
+			await get_tree().create_timer(retry_delay).timeout
+			%Retry.show()
+		if space.mothership == null and not %Win.visible:
+			%Win.show()
+			await get_tree().create_timer(retry_delay).timeout
+			%Retry.show()
 
 func _input(event):
 	if %Retry.visible and event.is_action_pressed("player_shoot_1"):
 		%Retry.hide()
 		%Gameover.hide()
+		%Win.hide()
 		space.tree_exited.connect(_load_space)
 		space.queue_free()
 		space = null

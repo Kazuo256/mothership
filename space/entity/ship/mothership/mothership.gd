@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Mothership extends CharacterBody3D
 
 @export var fighter_max := 20
 

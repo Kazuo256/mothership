@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b75w5l33qdiwg"]
+[gd_scene load_steps=11 format=3 uid="uid://b75w5l33qdiwg"]
 
 [ext_resource type="Script" path="res://space/entity/ship/mothership/mothership.gd" id="1_aoe5k"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="1_gteac"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="2_7mr5l"]
 [ext_resource type="PackedScene" uid="uid://fhymupg8nv7x" path="res://space/entity/ship/fighter/fighter.tscn" id="3_kuhhp"]
+[ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="5_r4eqm"]
+[ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="6_lg8ye"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxh4a"]
 albedo_color = Color(0.2, 0.0470588, 0.403922, 1)
@@ -26,7 +28,7 @@ height = 40.0
 top_radius = 0.0
 height = 1.0
 
-[node name="Mothership" type="CharacterBody3D"]
+[node name="Mothership" type="CharacterBody3D" groups=["mothership"]]
 collision_layer = 6
 collision_mask = 4
 script = ExtResource("1_aoe5k")
@@ -54,3 +56,18 @@ warmup_duration = 0.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Gun"]
 transform = Transform3D(2.98023e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.98023e-08, -8.88178e-16, 0, 0, 0)
 mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_r4eqm")
+
+[node name="Shape" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_yaxsi")
+
+[node name="Destruction" type="Node3D" parent="."]
+script = ExtResource("6_lg8ye")
+hit_points = 100
+
+[connection signal="destroyed" from="Destruction" to="." method="queue_free"]

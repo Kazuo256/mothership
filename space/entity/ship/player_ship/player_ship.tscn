@@ -110,6 +110,7 @@ shape = SubResource("BoxShape3D_m28nx")
 
 [node name="Destruction" type="Node3D" parent="."]
 script = ExtResource("12_fsoxa")
+hit_points = 50
 
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)

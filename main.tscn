@@ -41,16 +41,22 @@ environment = SubResource("Environment_byw2o")
 
 [node name="CameraFocus" parent="." instance=ExtResource("3_y3f2d")]
 
-[node name="Gameover" type="Node3D" parent="CameraFocus"]
-unique_name_in_owner = true
+[node name="Alerts" type="Node3D" parent="CameraFocus"]
 transform = Transform3D(1, 0, 0, 0, -0.574391, 0.818581, 0, -0.818581, -0.574391, 0, 4.63882, 1.55355)
-visible = false
 
-[node name="Label3D" type="Label3D" parent="CameraFocus/Gameover"]
+[node name="Gameover" type="Label3D" parent="CameraFocus/Alerts"]
+unique_name_in_owner = true
+visible = false
 text = "GAME OVER"
 font_size = 160
 
-[node name="Retry" type="Label3D" parent="CameraFocus/Gameover"]
+[node name="Win" type="Label3D" parent="CameraFocus/Alerts"]
+unique_name_in_owner = true
+visible = false
+text = "YOU WIN"
+font_size = 160
+
+[node name="Retry" type="Label3D" parent="CameraFocus/Alerts"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 visible = false
