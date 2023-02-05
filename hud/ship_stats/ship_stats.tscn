@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvr4l56bjcygr"]
+
+[ext_resource type="Script" path="res://hud/ship_stats/ship_stats.gd" id="1_gs6jp"]
+[ext_resource type="Script" path="res://space/entity/ship/mothership/mothership.gd" id="2_0c880"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eurmr"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.0627451, 0.886275, 0.937255, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yefj0"]
+bg_color = Color(0.0627451, 0.886275, 0.937255, 0.501961)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="ShipStats" type="VBoxContainer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_gs6jp")
+ship_type = ExtResource("2_0c880")
+
+[node name="ShipName" type="Label" parent="."]
+layout_mode = 2
+text = "PLAYER"
+
+[node name="HullBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_eurmr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yefj0")
+value = 50.0
+fill_mode = 3
+show_percentage = false

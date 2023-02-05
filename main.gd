@@ -30,6 +30,9 @@ func _input(event):
 		space = null
 
 func _load_space():
-	space = space_scn.instantiate()
+	space = space_scn.instantiate() as Space
 	space.camera = camera_focus
+	space.ready.connect(func():
+		propagate_call('_game_start', [[space.player, space.mothership]])
+	)
 	add_child(space)

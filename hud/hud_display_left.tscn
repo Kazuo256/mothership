@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://uso1bb880u0a"]
+
+[ext_resource type="PackedScene" uid="uid://elc54sxjt2oy" path="res://hud/hud_display.tscn" id="1_2hsw0"]
+[ext_resource type="PackedScene" uid="uid://bqmqwdr77jd2b" path="res://hud/hud_left.tscn" id="2_h08vv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5t12r"]
+viewport_path = NodePath("SubViewport")
+
+[node name="HUDDisplay" instance=ExtResource("1_2hsw0")]
+texture = SubResource("ViewportTexture_5t12r")
+
+[node name="HUD" parent="SubViewport" index="0" instance=ExtResource("2_h08vv")]

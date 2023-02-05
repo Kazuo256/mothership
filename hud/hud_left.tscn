@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqmqwdr77jd2b"]
+
+[ext_resource type="PackedScene" uid="uid://cm8mbr4pxunqv" path="res://hud/hud_right.tscn" id="1_r14hr"]
+[ext_resource type="Script" path="res://space/entity/ship/player_ship/player_ship.gd" id="2_kl6m2"]
+
+[node name="HUD" instance=ExtResource("1_r14hr")]
+
+[node name="ShipStats" parent="." index="0"]
+ship_type = ExtResource("2_kl6m2")

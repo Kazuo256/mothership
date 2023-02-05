@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://elc54sxjt2oy"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w0e0a"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="HUDDisplay" type="Sprite3D"]
+texture = SubResource("ViewportTexture_w0e0a")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
