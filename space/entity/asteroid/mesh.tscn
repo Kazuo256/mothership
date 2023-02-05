@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://2tx68wihi7k3"]
+
+[ext_resource type="Texture2D" uid="uid://bd8shm8cjlajc" path="res://space/entity/asteroid/CliffJagged004_COL_VAR1_3K.jpg" id="1_x8ko0"]
+[ext_resource type="Texture2D" uid="uid://ckj3dxqcy84rt" path="res://space/entity/asteroid/CliffJagged004_DISP_VAR1_3K.jpg" id="2_5hk2k"]
+[ext_resource type="Texture2D" uid="uid://bviq8pqljrcl8" path="res://space/entity/asteroid/CliffJagged004_REFL_3K.jpg" id="3_pc4ri"]
+[ext_resource type="Texture2D" uid="uid://bi8m1q0nvc7rk" path="res://space/entity/asteroid/CliffJagged004_NRM_3K.jpg" id="4_tqpgr"]
+[ext_resource type="Texture2D" uid="uid://d4lk4a8osovfd" path="res://space/entity/asteroid/CliffJagged004_AO_3K.jpg" id="5_xuuxn"]
+[ext_resource type="Script" path="res://space/entity/asteroid/mesh.gd" id="6_ix0tp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3d37h"]
+albedo_texture = ExtResource("1_x8ko0")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("3_pc4ri")
+roughness_texture = ExtResource("5_xuuxn")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("4_tqpgr")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_5hk2k")
+
+[sub_resource type="SphereMesh" id="SphereMesh_vtrk1"]
+material = SubResource("StandardMaterial3D_3d37h")
+radial_segments = 16
+rings = 8
+
+[node name="Mesh" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_vtrk1")
+script = ExtResource("6_ix0tp")

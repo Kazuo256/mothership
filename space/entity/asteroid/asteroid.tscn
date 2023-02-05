@@ -1,35 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dccq5kagdako6"]
+[gd_scene load_steps=10 format=3 uid="uid://dccq5kagdako6"]
 
 [ext_resource type="Script" path="res://space/entity/asteroid/asteroid.gd" id="1_3krq4"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_idbsr"]
+[ext_resource type="PackedScene" uid="uid://2tx68wihi7k3" path="res://space/entity/asteroid/mesh.tscn" id="2_mya20"]
 [ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_n31qs"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="4_fp0gi"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="5_43ftj"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="5_a2oqv"]
 [ext_resource type="AudioStream" uid="uid://cm4p2nbrfhetc" path="res://space/entity/asteroid/impactMetal_002.ogg" id="7_ry2fp"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_36q10"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3d37h"]
-albedo_color = Color(0.372549, 0.341176, 0.184314, 1)
-metallic = 0.5
-metallic_specular = 0.0
-roughness = 0.8
-normal_scale = 0.5
-heightmap_texture = SubResource("NoiseTexture2D_36q10")
-
-[sub_resource type="SphereMesh" id="SphereMesh_vtrk1"]
-material = SubResource("StandardMaterial3D_3d37h")
-radial_segments = 16
-rings = 8
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_q1v87"]
 
 [node name="Asteroid" type="CharacterBody3D"]
 script = ExtResource("1_3krq4")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_vtrk1")
+[node name="Mesh" parent="." instance=ExtResource("2_mya20")]
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_q1v87")
