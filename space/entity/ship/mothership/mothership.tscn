@@ -1,13 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://b75w5l33qdiwg"]
+[gd_scene load_steps=16 format=3 uid="uid://b75w5l33qdiwg"]
 
 [ext_resource type="Script" path="res://space/entity/ship/mothership/mothership.gd" id="1_aoe5k"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="1_gteac"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="2_7mr5l"]
 [ext_resource type="PackedScene" uid="uid://cllci0x7w1nnu" path="res://space/entity/ship/mothership/imperial_purple.tscn" id="2_ac6ah"]
 [ext_resource type="PackedScene" uid="uid://fhymupg8nv7x" path="res://space/entity/ship/fighter/fighter.tscn" id="3_kuhhp"]
+[ext_resource type="Script" path="res://space/entity/property/movement.gd" id="4_hle1g"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="5_r4eqm"]
+[ext_resource type="Script" path="res://space/entity/property/rotation.gd" id="5_trrlj"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="6_7d3i7"]
+[ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="6_jhixi"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="6_lg8ye"]
+[ext_resource type="Script" path="res://space/entity/property/steering.gd" id="7_lyl7w"]
 [ext_resource type="AudioStream" uid="uid://d35u04uoh8kwi" path="res://space/entity/ship/mothership/impactMetal_001.ogg" id="8_a8mh1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yaxsi"]
@@ -32,6 +36,25 @@ shape = SubResource("CapsuleShape3D_yaxsi")
 
 [node name="ShipController" type="Node3D" parent="."]
 script = ExtResource("1_gteac")
+frontal_control = 1.0
+steer_control = -1.0
+
+[node name="Movement" type="Node3D" parent="."]
+script = ExtResource("4_hle1g")
+
+[node name="Rotation" type="Node3D" parent="."]
+script = ExtResource("5_trrlj")
+max_speed = 10.0
+
+[node name="Thruster" type="Node3D" parent="."]
+script = ExtResource("6_jhixi")
+controller_path = NodePath("../ShipController")
+thrust_max = 2.0
+
+[node name="Steering" type="Node3D" parent="."]
+script = ExtResource("7_lyl7w")
+controller_path = NodePath("../ShipController")
+steer_max = 0.02
 
 [node name="Gun" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.499, 0, -15)

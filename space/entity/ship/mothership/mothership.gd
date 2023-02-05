@@ -5,6 +5,7 @@ class_name Mothership extends CharacterBody3D
 @onready var ship_controller = $ShipController as ShipController
 
 func _physics_process(_delta):
+	position.y = 0
 	var gun_count := get_children() \
 			.reduce(func(acc, node): return acc + (1 if node is Gun else 0), 0)
 	var figther_count = \
