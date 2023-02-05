@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://uso1bb880u0a"]
+[gd_scene load_steps=5 format=3 uid="uid://uso1bb880u0a"]
 
 [ext_resource type="PackedScene" uid="uid://elc54sxjt2oy" path="res://hud/hud_display.tscn" id="1_2hsw0"]
 [ext_resource type="PackedScene" uid="uid://bqmqwdr77jd2b" path="res://hud/hud_left.tscn" id="2_h08vv"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5t12r"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_j54de"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv8rn"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_j54de")
+
 [node name="HUDDisplay" instance=ExtResource("1_2hsw0")]
-texture = SubResource("ViewportTexture_5t12r")
 
 [node name="HUD" parent="SubViewport" index="0" instance=ExtResource("2_h08vv")]
+
+[node name="Quad" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bv8rn")

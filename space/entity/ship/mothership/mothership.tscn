@@ -155,7 +155,7 @@ shape = SubResource("CapsuleShape3D_yaxsi")
 
 [node name="Destruction" type="Node3D" parent="."]
 script = ExtResource("6_lg8ye")
-hit_points = 500
+hit_points = 300
 
 [node name="HitSFX" type="AudioStreamPlayer3D" parent="Destruction"]
 stream = ExtResource("8_a8mh1")
