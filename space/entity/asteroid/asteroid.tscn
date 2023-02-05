@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dccq5kagdako6"]
+[gd_scene load_steps=11 format=3 uid="uid://dccq5kagdako6"]
 
 [ext_resource type="Script" path="res://space/entity/asteroid/asteroid.gd" id="1_3krq4"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_idbsr"]
 [ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_n31qs"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="4_fp0gi"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="5_43ftj"]
+[ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="5_a2oqv"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_36q10"]
 
@@ -40,10 +41,19 @@ script = ExtResource("2_n31qs")
 
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 0
 script = ExtResource("4_fp0gi")
 
 [node name="Shape" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_q1v87")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("5_a2oqv")
+power = 5
+
+[node name="Shape" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_q1v87")
 
 [node name="Destruction" type="Node3D" parent="."]

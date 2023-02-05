@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd4gm24n2vi0v"]
+[gd_scene load_steps=9 format=3 uid="uid://bd4gm24n2vi0v"]
 
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_4pm80"]
 [ext_resource type="Script" path="res://space/entity/property/fixed_velocity.gd" id="2_uvhxj"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="3_i0xms"]
-[ext_resource type="Script" path="res://space/entity/property/damage.gd" id="4_6u8h6"]
+[ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="4_xccdk"]
+[ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="6_2x65a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umaqo"]
 albedo_color = Color(0.121569, 0.819608, 1, 1)
@@ -22,6 +23,8 @@ radius = 0.02
 height = 0.2
 
 [node name="Laser" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -40,16 +43,25 @@ one_shot = true
 autostart = true
 
 [node name="Hitbox" type="Area3D" parent="."]
-collision_layer = 8
-collision_mask = 12
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("3_i0xms")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="Shape" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_4bpe7")
 
-[node name="Damage" type="Node3D" parent="."]
-script = ExtResource("4_6u8h6")
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_xccdk")
+
+[node name="Shape" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4bpe7")
+
+[node name="Destruction" type="Node3D" parent="."]
+script = ExtResource("6_2x65a")
 
 [connection signal="timeout" from="Timer" to="." method="queue_free" flags=6]
-[connection signal="hit" from="Hitbox" to="Damage" method="apply"]
+[connection signal="destroyed" from="Destruction" to="." method="queue_free"]

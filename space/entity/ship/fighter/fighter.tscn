@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://fhymupg8nv7x"]
+[gd_scene load_steps=22 format=3 uid="uid://fhymupg8nv7x"]
 
 [ext_resource type="Script" path="res://space/entity/ship/fighter/fighter.gd" id="1_5m1tl"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="1_pqb18"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://space/entity/property/steering.gd" id="7_7s8no"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="8_jlk35"]
 [ext_resource type="PackedScene" uid="uid://se08ki6bvas5" path="res://space/entity/ship/fighter/fighter_laser.tscn" id="10_2yl4b"]
+[ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="11_efvs6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4o10"]
 albedo_color = Color(0.647059, 0.0901961, 0.117647, 1)
@@ -55,8 +56,8 @@ height = 6.46265
 radius = 1.28433
 
 [node name="Fighter" type="CharacterBody3D" groups=["fighter"]]
-collision_layer = 6
-collision_mask = 4
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_5m1tl")
 turn_away_duration = 1.5
 
@@ -69,7 +70,7 @@ shape = SubResource("CylinderShape3D_22ndv")
 
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 0
 script = ExtResource("1_pqb18")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
@@ -134,5 +135,14 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AimDetection"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3.81645)
 shape = SubResource("CylinderShape3D_ydrf3")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("11_efvs6")
+power = 2
+
+[node name="Shape" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("CapsuleShape3D_6d73k")
 
 [connection signal="destroyed" from="Destruction" to="." method="queue_free" flags=6]
