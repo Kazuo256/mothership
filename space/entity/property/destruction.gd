@@ -1,5 +1,6 @@
 class_name Destruction extends Node3D
 
+signal hit
 signal destroyed
 
 @export var hit_points := 1
@@ -9,6 +10,7 @@ signal destroyed
 func _take_hit(damage: int):
 	if hit_points > 0:
 		hit_points = max(hit_points - damage, 0)
+		hit.emit()
 
 func _physics_process(_delta):
 	if hit_points == 0 and not is_destroyed:

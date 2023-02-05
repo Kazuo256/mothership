@@ -62,5 +62,10 @@ shape = SubResource("CapsuleShape3D_4bpe7")
 [node name="Destruction" type="Node3D" parent="."]
 script = ExtResource("6_2x65a")
 
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="."]
+volume_db = -4.52
+autoplay = true
+bus = &"SFX"
+
 [connection signal="timeout" from="Timer" to="." method="queue_free" flags=6]
 [connection signal="destroyed" from="Destruction" to="." method="queue_free"]

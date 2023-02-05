@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dccq5kagdako6"]
+[gd_scene load_steps=12 format=3 uid="uid://dccq5kagdako6"]
 
 [ext_resource type="Script" path="res://space/entity/asteroid/asteroid.gd" id="1_3krq4"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="1_idbsr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="4_fp0gi"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="5_43ftj"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="5_a2oqv"]
+[ext_resource type="AudioStream" uid="uid://cm4p2nbrfhetc" path="res://space/entity/asteroid/impactMetal_002.ogg" id="7_ry2fp"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_36q10"]
 
@@ -60,4 +61,11 @@ shape = SubResource("SphereShape3D_q1v87")
 script = ExtResource("5_43ftj")
 hit_points = 5
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Destruction"]
+stream = ExtResource("7_ry2fp")
+volume_db = 8.136
+max_polyphony = 5
+bus = &"SFX"
+
 [connection signal="destroyed" from="Destruction" to="." method="queue_free"]
+[connection signal="hit" from="Destruction" to="Destruction/AudioStreamPlayer3D" method="play"]

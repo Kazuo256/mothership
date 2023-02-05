@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fhymupg8nv7x"]
+[gd_scene load_steps=23 format=3 uid="uid://fhymupg8nv7x"]
 
 [ext_resource type="Script" path="res://space/entity/ship/fighter/fighter.gd" id="1_5m1tl"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="1_pqb18"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="4_bfi18"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="5_12fyq"]
 [ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="6_nevom"]
+[ext_resource type="AudioStream" uid="uid://cyfu7w7wtfadj" path="res://space/entity/ship/fighter/impactMetal_004.ogg" id="6_xcvm7"]
 [ext_resource type="Script" path="res://space/entity/property/steering.gd" id="7_7s8no"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="8_jlk35"]
 [ext_resource type="PackedScene" uid="uid://se08ki6bvas5" path="res://space/entity/ship/fighter/fighter_laser.tscn" id="10_2yl4b"]
@@ -87,6 +88,10 @@ max_speed = 10.0
 script = ExtResource("4_bfi18")
 hit_points = 3
 
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="Destruction"]
+stream = ExtResource("6_xcvm7")
+bus = &"SFX"
+
 [node name="ShipController" type="Node3D" parent="."]
 script = ExtResource("5_12fyq")
 
@@ -146,3 +151,4 @@ power = 2
 shape = SubResource("CapsuleShape3D_6d73k")
 
 [connection signal="destroyed" from="Destruction" to="." method="queue_free" flags=6]
+[connection signal="hit" from="Destruction" to="Destruction/HitSFX" method="play"]

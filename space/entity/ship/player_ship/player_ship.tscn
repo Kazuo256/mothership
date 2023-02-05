@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=21 format=3 uid="uid://bqn5aseil26xe"]
 
 [ext_resource type="Script" path="res://space/entity/ship/player_ship/player_ship.gd" id="1_bo38g"]
 [ext_resource type="Script" path="res://space/entity/property/player_input.gd" id="2_jod1e"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b8elbckro8ml6" path="res://space/entity/ship/player_ship/player_laser.tscn" id="10_ytg20"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="11_2imd3"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="12_fsoxa"]
+[ext_resource type="AudioStream" uid="uid://dgak37rjsd0tb" path="res://space/entity/ship/player_ship/impactMetal_000.ogg" id="13_bn6lv"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="14_enrhl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
@@ -113,6 +114,11 @@ shape = SubResource("BoxShape3D_m28nx")
 script = ExtResource("12_fsoxa")
 hit_points = 20
 
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="Destruction"]
+stream = ExtResource("13_bn6lv")
+max_polyphony = 5
+bus = &"SFX"
+
 [node name="Debug" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25673, 0)
 text = "debug info"
@@ -129,3 +135,4 @@ power = 20
 shape = SubResource("BoxShape3D_m28nx")
 
 [connection signal="destroyed" from="Destruction" to="." method="queue_free" flags=6]
+[connection signal="hit" from="Destruction" to="Destruction/HitSFX" method="play"]

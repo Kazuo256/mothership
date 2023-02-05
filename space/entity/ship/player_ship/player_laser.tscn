@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8elbckro8ml6"]
+[gd_scene load_steps=3 format=3 uid="uid://b8elbckro8ml6"]
 
 [ext_resource type="PackedScene" uid="uid://bd4gm24n2vi0v" path="res://space/entity/projectile/laser/laser.tscn" id="1_y1qdj"]
+[ext_resource type="AudioStream" uid="uid://1dm01ejmh7v5" path="res://space/entity/ship/player_ship/laser3.mp3" id="2_b1me7"]
 
 [node name="PlayerLaser" instance=ExtResource("1_y1qdj")]
 
@@ -9,3 +10,6 @@ collision_mask = 14
 
 [node name="Hurtbox" parent="." index="5"]
 collision_layer = 1
+
+[node name="ShootSFX" parent="." index="7"]
+stream = ExtResource("2_b1me7")

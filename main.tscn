@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c25j5gch8vw4j"]
+[gd_scene load_steps=11 format=3 uid="uid://c25j5gch8vw4j"]
 
 [ext_resource type="PackedScene" uid="uid://cmrd2phqetxr6" path="res://space/space.tscn" id="1_6nhv3"]
 [ext_resource type="Script" path="res://main.gd" id="1_k4m0i"]
 [ext_resource type="PackedScene" uid="uid://jtljxle4w8t5" path="res://space/camera/camera_focus.tscn" id="3_y3f2d"]
+[ext_resource type="AudioStream" uid="uid://c05r3yvemvuna" path="res://space/through space.ogg" id="4_5m4y5"]
 
 [sub_resource type="Gradient" id="Gradient_knaus"]
 offsets = PackedFloat32Array(0.912698, 0.964286)
@@ -62,3 +63,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 visible = false
 text = "SHOOT TO RETRY"
 font_size = 64
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5m4y5")
+autoplay = true
+bus = &"BGM"
