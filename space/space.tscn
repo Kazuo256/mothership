@@ -9,7 +9,7 @@
 [node name="Space" type="Node3D"]
 script = ExtResource("1_5cuiw")
 spawn_scns = Array[PackedScene]([ExtResource("4_emhkt"), ExtResource("4_71xu5")])
-spawn_counts = Array[int]([100, 10])
+spawn_counts = Array[int]([100, 20])
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.53502, -0.423295, 0.731146, 0.397015, 0.637944, 0.659854, -0.745743, 0.643311, -0.173258, 0, 0, 0)
@@ -18,3 +18,4 @@ transform = Transform3D(-0.53502, -0.423295, 0.731146, 0.397015, 0.637944, 0.659
 
 [node name="Mothership" parent="." instance=ExtResource("5_4v7qb")]
 transform = Transform3D(0.564333, 0, -0.825547, 0, 1, 0, 0.825547, 0, 0.564333, -28.5294, 0, -37.9025)
+fighter_max = 60
