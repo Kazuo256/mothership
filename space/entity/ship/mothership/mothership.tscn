@@ -1,30 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://b75w5l33qdiwg"]
+[gd_scene load_steps=12 format=3 uid="uid://b75w5l33qdiwg"]
 
 [ext_resource type="Script" path="res://space/entity/ship/mothership/mothership.gd" id="1_aoe5k"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="1_gteac"]
 [ext_resource type="Script" path="res://space/entity/property/gun.gd" id="2_7mr5l"]
+[ext_resource type="PackedScene" uid="uid://cllci0x7w1nnu" path="res://space/entity/ship/mothership/imperial_purple.tscn" id="2_ac6ah"]
 [ext_resource type="PackedScene" uid="uid://fhymupg8nv7x" path="res://space/entity/ship/fighter/fighter.tscn" id="3_kuhhp"]
 [ext_resource type="Script" path="res://space/entity/property/hurtbox.gd" id="5_r4eqm"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="6_7d3i7"]
 [ext_resource type="Script" path="res://space/entity/property/destruction.gd" id="6_lg8ye"]
 [ext_resource type="AudioStream" uid="uid://d35u04uoh8kwi" path="res://space/entity/ship/mothership/impactMetal_001.ogg" id="8_a8mh1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxh4a"]
-albedo_color = Color(0.2, 0.0470588, 0.403922, 1)
-metallic = 0.54
-metallic_specular = 0.79
-roughness = 0.37
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jpl7r"]
-material = SubResource("StandardMaterial3D_kxh4a")
-radius = 10.0
-height = 40.0
-radial_segments = 8
-rings = 2
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yaxsi"]
 radius = 10.0
-height = 40.0
+height = 60.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tanj5"]
 top_radius = 0.0
@@ -35,9 +23,8 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_aoe5k")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_jpl7r")
+[node name="Imperial" parent="." instance=ExtResource("2_ac6ah")]
+transform = Transform3D(-2.91778, 0, -4.40572e-07, 0, 5.10611, 0, 4.40572e-07, 0, -2.91778, 0, 0, 5.69652)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

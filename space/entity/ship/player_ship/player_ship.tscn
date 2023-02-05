@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bqn5aseil26xe"]
+[gd_scene load_steps=19 format=3 uid="uid://d0v1a5bbpoy3i"]
 
 [ext_resource type="Script" path="res://space/entity/ship/player_ship/player_ship.gd" id="1_bo38g"]
 [ext_resource type="Script" path="res://space/entity/property/player_input.gd" id="2_jod1e"]
+[ext_resource type="PackedScene" uid="uid://fvjt1ewhqxeq" path="res://space/entity/ship/player_ship/Insurgent.gltf" id="3_7yt3v"]
 [ext_resource type="Script" path="res://space/entity/property/movement.gd" id="3_6336t"]
+[ext_resource type="Shape3D" uid="uid://lhqgga0t4i7i" path="res://space/entity/ship/player_ship/player_ship_shape.tres" id="3_oav0n"]
 [ext_resource type="Script" path="res://space/entity/property/rotation.gd" id="4_x11ga"]
 [ext_resource type="Script" path="res://space/entity/property/ship_controller.gd" id="5_5mtfk"]
 [ext_resource type="Script" path="res://space/entity/property/thruster.gd" id="6_68yju"]
@@ -16,35 +18,22 @@
 [ext_resource type="AudioStream" uid="uid://dgak37rjsd0tb" path="res://space/entity/ship/player_ship/impactMetal_000.ogg" id="13_bn6lv"]
 [ext_resource type="Script" path="res://space/entity/property/hitbox.gd" id="14_enrhl"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65qxl"]
-albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
-metallic = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_h3171"]
-material = SubResource("StandardMaterial3D_65qxl")
-size = Vector3(0.6, 0.4, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vtox3"]
-size = Vector3(0.6, 0.4, 1)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_jg8eg"]
 top_radius = 0.0
 bottom_radius = 0.01
 height = 0.1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m28nx"]
-size = Vector3(0.6, 0.4, 1)
 
 [node name="PlayerShip" type="CharacterBody3D" groups=["player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_bo38g")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_h3171")
+[node name="Insurgent" parent="." instance=ExtResource("3_7yt3v")]
+transform = Transform3D(-0.18, 0, -2.71792e-08, 0, 0.18, 0, 2.71792e-08, 0, -0.18, 0, 0, 0.275526)
 
 [node name="Shape" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_vtox3")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = ExtResource("3_oav0n")
 
 [node name="PlayerInput" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
 script = ExtResource("2_jod1e")
@@ -108,7 +97,8 @@ collision_mask = 0
 script = ExtResource("11_2imd3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-shape = SubResource("BoxShape3D_m28nx")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = ExtResource("3_oav0n")
 
 [node name="Destruction" type="Node3D" parent="."]
 script = ExtResource("12_fsoxa")
@@ -132,7 +122,8 @@ script = ExtResource("14_enrhl")
 power = 20
 
 [node name="Shape" type="CollisionShape3D" parent="Hitbox"]
-shape = SubResource("BoxShape3D_m28nx")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = ExtResource("3_oav0n")
 
 [connection signal="destroyed" from="Destruction" to="." method="queue_free" flags=6]
 [connection signal="hit" from="Destruction" to="Destruction/HitSFX" method="play"]

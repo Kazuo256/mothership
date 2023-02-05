@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmrd2phqetxr6"]
 
 [ext_resource type="Script" path="res://space/space.gd" id="1_5cuiw"]
-[ext_resource type="PackedScene" uid="uid://bqn5aseil26xe" path="res://space/entity/ship/player_ship/player_ship.tscn" id="2_ibj3n"]
+[ext_resource type="PackedScene" uid="uid://d0v1a5bbpoy3i" path="res://space/entity/ship/player_ship/player_ship.tscn" id="2_ibj3n"]
 [ext_resource type="PackedScene" uid="uid://fhymupg8nv7x" path="res://space/entity/ship/fighter/fighter.tscn" id="4_71xu5"]
 [ext_resource type="PackedScene" uid="uid://dccq5kagdako6" path="res://space/entity/asteroid/asteroid.tscn" id="4_emhkt"]
 [ext_resource type="PackedScene" uid="uid://b75w5l33qdiwg" path="res://space/entity/ship/mothership/mothership.tscn" id="5_4v7qb"]
@@ -12,7 +12,7 @@ spawn_scns = Array[PackedScene]([ExtResource("4_emhkt"), ExtResource("4_71xu5")]
 spawn_counts = Array[int]([100, 10])
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, 0.5, -0.5, 0.214196, 0.522425, 0.825344, 0.673884, -0.690704, 0.262312, 0, 0, 0)
+transform = Transform3D(-0.53502, -0.423295, 0.731146, 0.397015, 0.637944, 0.659854, -0.745743, 0.643311, -0.173258, 0, 0, 0)
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_ibj3n")]
 

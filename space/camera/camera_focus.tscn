@@ -3,5 +3,7 @@
 [node name="CameraFocus" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 0.65276, 0.757565, 0, -0.757565, 0.65276, 4.76837e-07, 15.3292, 14.0365)
 current = true
+fov = 46.7
+size = 20.0
