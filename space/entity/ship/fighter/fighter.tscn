@@ -93,7 +93,7 @@ script = ExtResource("5_12fyq")
 [node name="Thruster" type="Node3D" parent="."]
 script = ExtResource("6_nevom")
 controller_path = NodePath("../ShipController")
-thrust_max = 5.0
+thrust_max = 2.0
 
 [node name="Steering" type="Node3D" parent="."]
 script = ExtResource("7_7s8no")

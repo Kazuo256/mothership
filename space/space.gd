@@ -1,5 +1,9 @@
 class_name Space extends Node3D
 
+@export var spawn_scns: Array[PackedScene]
+@export var spawn_counts: Array[int]
+@export var spawn_area_size := 50
+
 var camera: Node3D
 var player: PlayerShip
 var mothership: Mothership
@@ -11,6 +15,7 @@ func _ready():
 	assert(player != null)
 	assert(mothership != null)
 	_attach_camera_to_player()
+	_spawn_everything()
 
 func _physics_process(_delta):
 	_find_player()
@@ -45,3 +50,15 @@ func _attach_camera_to_player():
 	remote_xform.update_rotation = false
 	remote_xform.update_scale = false
 	player.add_child(remote_xform)
+
+func _spawn_everything():
+	for i in spawn_scns.size():
+		for n in spawn_counts[i]:
+			var spawn := spawn_scns[i].instantiate()
+			spawn.position = Vector3(
+				randf_range(-spawn_area_size, spawn_area_size),
+				0,
+				randf_range(-spawn_area_size, spawn_area_size),
+			)
+			_spawn(spawn)
+

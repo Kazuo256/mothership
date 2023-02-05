@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape3D_yaxsi")
 script = ExtResource("1_gteac")
 
 [node name="Gun" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4994, 0, 0.550941)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.499, 0, -5)
 script = ExtResource("2_7mr5l")
 ship_controller = NodePath("../ShipController")
 ship_gun = 0
@@ -56,6 +56,71 @@ warmup_duration = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Gun"]
 transform = Transform3D(2.98023e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.98023e-08, -8.88178e-16, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Gun2" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.499, 0, 0)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun2"]
+transform = Transform3D(2.98023e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.98023e-08, -8.88178e-16, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Gun3" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.499, 0, 5)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun3"]
+transform = Transform3D(2.98023e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.98023e-08, -8.88178e-16, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Gun4" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.499, 0, 5)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun4"]
+transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 0, 4.37114e-08, -1, -1, -4.37114e-08, -1.91069e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Gun5" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.499, 0, 0)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun5"]
+transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 0, 4.37114e-08, -1, -1, -4.37114e-08, -1.91069e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tanj5")
+
+[node name="Gun6" type="Node3D" parent="." node_paths=PackedStringArray("ship_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.499, 0, -5)
+script = ExtResource("2_7mr5l")
+ship_controller = NodePath("../ShipController")
+ship_gun = 0
+projectile_scn = ExtResource("3_kuhhp")
+cooldown_duration = 10.0
+warmup_duration = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun6"]
+transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 0, 4.37114e-08, -1, -1, -4.37114e-08, -1.91069e-15, 0, 0, 0)
 mesh = SubResource("CylinderMesh_tanj5")
 
 [node name="Hurtbox" type="Area3D" parent="."]
@@ -79,6 +144,6 @@ shape = SubResource("CapsuleShape3D_yaxsi")
 
 [node name="Destruction" type="Node3D" parent="."]
 script = ExtResource("6_lg8ye")
-hit_points = 100
+hit_points = 500
 
 [connection signal="destroyed" from="Destruction" to="." method="queue_free"]
